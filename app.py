@@ -8,7 +8,7 @@ from PIL import Image
 from tensorflow.keras.models import load_model
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/*": {"origins": "*"}}) 
 
 # Load models
 MODEL_DIR = os.path.join(os.getcwd(), 'Models')

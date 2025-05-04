@@ -33,8 +33,8 @@ const MedicalImagePage = () => {
     try {
       // Choose endpoint based on detection type
       const endpoint = detectionType === 'pneumonia' 
-        ? "https://medisense-92pe.onrender.com/predict_pneumonia" 
-        : "https://medisense-92pe.onrender.com/predict_brain_tumor";
+        ? "https://medisense-1.onrender.com/predict_pneumonia" 
+        : "https://medisense-1.onrender.com/predict_brain_tumor";
         
       const response = await fetch(endpoint, {
         method: 'POST',

@@ -27,7 +27,7 @@ function HeartDiseaseFormWrapper() {
   const [predictionResult, setPredictionResult] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const API_URL = "https://medisense-92pe.onrender.com/predict";
+  const API_URL = "https://medisense-1.onrender.com/predict";
 
   const handlePrediction = async (formData) => {
     setLoading(true);
