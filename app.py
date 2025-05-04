@@ -45,13 +45,11 @@ def safe_get_float(data, key, default=0.0):
         return default
 
 # --- ROUTES ---
+app = Flask(__name__, static_folder='dist', static_url_path='')
+
 @app.route('/')
 def home():
-    return render_template('index.html')
-
-@app.route('/heart_disease')
-def heart_disease():
-    return render_template('heart_disease.html')
+    return app.send_static_file('index.html')
 
 @app.route('/predict', methods=['POST'])
 def predict_heart():
