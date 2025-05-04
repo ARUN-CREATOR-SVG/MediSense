@@ -18,7 +18,7 @@ try:
 
     pneumonia_model = load_model(os.path.join(MODEL_DIR, "pneumonia_model_clean_2.14.h5"))
 except FileNotFoundError as e:
-    print(f"Error: {e}. Make sure the models are placed in the correct directory.")
+    print(f"Error: {e}. ")
 
 
 # --- MAPPINGS ---
@@ -51,8 +51,12 @@ app = Flask(__name__, static_folder='dist', static_url_path='')
 def home():
     return app.send_static_file('index.html')
 
-@app.route('/predict', methods=['POST'])
+@app.route('/predict', methods=['POST', 'OPTIONS'])
 def predict_heart():
+    if request.method == 'OPTIONS':
+        # This is a CORS preflight request
+        return '', 200
+
     try:
         data = request.get_json() if request.is_json else request.form
 
@@ -82,28 +86,37 @@ def predict_heart():
 
     except Exception as e:
         return jsonify({'error': str(e)}), 500
-
-@app.route("/predict_pneumonia", methods=["POST"])
+    
+@app.route("/predict_pneumonia", methods=["POST", "OPTIONS"])
 def predict_pneumonia():
+    # Handle CORS preflight request
+    if request.method == "OPTIONS":
+        return '', 200
+
     if 'image' not in request.files:
         return jsonify({"error": "No image uploaded"}), 400
 
     try:
         file = request.files['image']
-        img = Image.open(file).convert("L").resize((256, 256))
-        img_array = np.expand_dims(np.expand_dims(np.array(img) / 255.0, axis=-1), axis=0)
+        img = Image.open(file).convert("L")              # Convert to grayscale
+        img = img.resize((256, 256))                     # Resize to 256x256
+        img_array = np.array(img) / 255.0                # Normalize to [0, 1]
+        img_array = np.expand_dims(img_array, axis=-1)   # Add channel dim: (256, 256, 1)
+        img_array = np.expand_dims(img_array, axis=0)    # Add batch dim: (1, 256, 256, 1)
 
-        pred = float(pneumonia_model.predict(img_array)[0][0])
-        diagnosis = "Pneumonia" if pred >= 0.5 else "Normal"
-        confidence = round((pred if diagnosis == "Pneumonia" else 1 - pred) * 100, 2)
+        prediction = float(pneumonia_model.predict(img_array)[0][0])  # Sigmoid output
+        diagnosis = "Pneumonia" if prediction >= 0.5 else "Normal"
+        confidence = prediction if diagnosis == "Pneumonia" else 1 - prediction
+        confidence_percent = round(confidence * 100, 2)
 
         return jsonify({
             "prediction": diagnosis,
-            "confidence": f"{confidence}%"
+            "confidence": f"{confidence_percent}%",
         })
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
 
 # --- MAIN ---
 if __name__ == '__main__':
