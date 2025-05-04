@@ -11,11 +11,14 @@ app = Flask(__name__)
 CORS(app)
 
 # Load models
-MODEL_DIR = r"C:\Users\Ankit\Desktop\MediSense\Models"
-with open(os.path.join(MODEL_DIR, "Heart_Disease_model.pkl"), 'rb') as f:
-    heart_model = pickle.load(f)
+MODEL_DIR = os.path.join(os.getcwd(), 'Models')
+try:
+    with open(os.path.join(MODEL_DIR, "Heart_Disease_model.pkl"), 'rb') as f:
+        heart_model = pickle.load(f)
 
-pneumonia_model = load_model(os.path.join(MODEL_DIR, "pneumonia_model_clean_2.14.h5"))
+    pneumonia_model = load_model(os.path.join(MODEL_DIR, "pneumonia_model_clean_2.14.h5"))
+except FileNotFoundError as e:
+    print(f"Error: {e}. Make sure the models are placed in the correct directory.")
 
 
 # --- MAPPINGS ---
