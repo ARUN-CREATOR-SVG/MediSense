@@ -5,5 +5,8 @@ pydantic
 pillow
 numpy
 pandas
+xgboost
 scikit-learn
 tensorflow
+matplotlib
+seaborn
