@@ -14,18 +14,18 @@ router=APIRouter(
 @router.post('/predict_heart',response_model=HeartDiseaseResponse)
 def predict_heart(data: HeartDiseaseForm):
     input_data = {
-        'age': [data.age],
-        'sex': [data.sex],
-        'Chest pain type': [data.chest_pain_type],
-        'BP': [data.bp],
-        'Cholesterol': [data.cholesterol],
-        'EKG results': [data.ekg_results],
-        'MAX HR': [data.max_hr],
-        'Exercise angina': [data.exercise_angina],
-        'ST depression': [data.st_depression],
-        'Slope of ST': [data.slope_of_st],
-        'Number of vessels fluro': [data.number_of_vessels_fluro],
-        'Thallium': [data.thallium]
+        'age': data.age,
+        'sex': data.sex,
+        'Chest pain type': data.chest_pain_type,
+        'BP': data.bp,
+        'Cholesterol': data.cholesterol,
+        'EKG results': data.ekg_results,
+        'MAX HR': data.max_hr,
+        'Exercise angina': data.exercise_angina,
+        'ST depression': data.st_depression,
+        'Slope of ST': data.slope_of_st,
+        'Number of vessels fluro': data.number_of_vessels_fluro,
+        'Thallium': data.thallium
     }
 
     try:      
