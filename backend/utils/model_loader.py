@@ -8,10 +8,17 @@ MODEL_DIR = os.path.join(os.getcwd(), 'models')
 
 def load_models():
     models = {}
+    model_files={
+        'heart':'Heart_Disease_model.pkl',
+        'liver':'LiverDiseaseModel.pkl'
+    }
     try:
-        with open(os.path.join(MODEL_DIR, "Heart_Disease_model.pkl"), 'rb') as f:
-            models['heart'] = pickle.load(f)
-        logger.info("Heart model loaded")
+       for key,filename in model_files.items():
+           path=os.path.join(MODEL_DIR,filename)
+           with open(path,'rb') as f:
+               models[key]=pickle.load(f)
+               logger.info(f"{key.capitalize()} model loaded")
     except Exception as e:
-        logger.error(f"Model load error: {e}")
+        logger.error(f"Model Load error: {e}")
+    
     return models
