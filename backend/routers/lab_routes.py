@@ -1,9 +1,9 @@
 from fastapi import  APIRouter,status
 from fastapi.responses import JSONResponse
-from schemas.lab_response import HeartDiseaseResponse
-from schemas.lab_forms import HeartDiseaseForm
+from schemas.lab_response import HeartDiseaseResponse,LiverDiseaseResponse
+from schemas.lab_forms import HeartDiseaseForm,LiverDiseaseForm
 from utils.model_loader import load_models
-from utils.prediction_functions import predict_heart_disease
+from utils.prediction_functions import predict_heart_disease,predict_liver_disease
 
 router=APIRouter(
     prefix='/lab',
@@ -30,6 +30,27 @@ def predict_heart(data: HeartDiseaseForm):
 
     try:      
         prediction = predict_heart_disease(input_data)
+        return JSONResponse(status_code=status.HTTP_200_OK, content={'predicted_category': prediction})
+
+    except Exception as e:
+        return  JSONResponse(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,content=str(e))
+
+@router.post('/predict_liver',response_model=LiverDiseaseResponse)
+def predict_liver(data:LiverDiseaseForm):
+    input_data={
+        'Age': data.Age,
+        'Gender':data.Gender,
+        'Total_Bilirubin':data.Total_Bilirubin,
+        'Direct_Bilirubin':data.Direct_Bilirubin,
+        'Alkaline_Phosphotase':data.Alkaline_Phosphotase,
+        'Alamine_Aminotransferase':data.Alamine_Aminotransferase,
+        'Aspartate_Aminotransferase': data.Aspartate_Aminotransferase,
+        'Total_Protiens':data.Total_Protiens,
+        'Albumin':data.Albumin,
+        'Albumin_and_Globulin_Ratio':data.Albumin_and_Globulin_Ratio
+        }
+    try:
+        prediction = predict_liver_disease(input_data)
         return JSONResponse(status_code=status.HTTP_200_OK, content={'predicted_category': prediction})
 
     except Exception as e:
