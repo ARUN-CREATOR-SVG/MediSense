@@ -16,3 +16,17 @@ def predict_heart_disease(data:dict):
         'probability': round(float(probability), 3),
         'risk_level': 'High' if prediction == 1 else 'Low',
     }
+
+def predict_liver_disease(data:dict):
+    if 'liver' not in models:
+        raise ValueError("Liver model not loaded")
+
+    input_df = pd.DataFrame([data])
+    prediction = models['liver'].predict(input_df)[0]
+    probability = models['liver'].predict_proba(input_df)[0][1]
+
+    return {
+        'prediction': int(prediction),
+        'probability': round(float(probability), 3),
+        'risk_level': 'Low' if probability < 0.4 else 'Medium' if probability < 0.7 else 'High',
+    }
