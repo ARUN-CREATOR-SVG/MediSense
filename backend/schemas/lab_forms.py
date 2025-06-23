@@ -14,3 +14,18 @@ class HeartDiseaseForm(BaseModel):
     slope_of_st: int = Field(..., alias="Slope of ST", ge=0, le=2, example=2)
     number_of_vessels_fluro: int = Field(..., alias="Number of vessels fluro", ge=0, le=4, example=2)
     thallium: int = Field(..., alias="Thallium", ge=0, le=3, example=3)
+
+
+
+class LiverDiseaseForm(BaseModel):
+    Age: float = Field(..., gt=0, example=45)
+    Gender: int = Field(...,ge=0, le=1, example=1,description="Male-1 Female-0")  
+    Total_Bilirubin: float = Field(...,  gt=0, example=1.2)
+    Direct_Bilirubin: float = Field(..., gt=0, example=0.4)
+    Alkaline_Phosphotase: float = Field(..., gt=0, example=187.0)
+    Alamine_Aminotransferase: float = Field(..., gt=0, example=16.0)
+    Aspartate_Aminotransferase: float = Field(..., gt=0, example=54.0)
+    Total_Protiens: float = Field(..., gt=0, example=6.8)
+    Albumin: float = Field(..., gt=0, example=3.3)
+    Albumin_and_Globulin_Ratio: float = Field(..., gt=0, example=0.9)
+
