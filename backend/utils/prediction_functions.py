@@ -14,7 +14,7 @@ def predict_heart_disease(data:dict):
     return {
         'prediction': int(prediction),
         'probability': round(float(probability), 3),
-        'risk_level': 'High' if prediction == 1 else 'Low',
+        'risk_level': 'Low' if probability < 0.4 else 'Medium' if probability < 0.7 else 'High',
     }
 
 def predict_liver_disease(data:dict):
