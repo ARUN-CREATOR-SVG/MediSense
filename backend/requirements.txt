@@ -10,3 +10,4 @@ scikit-learn
 tensorflow
 matplotlib
 seaborn
+imbalanced-learn
