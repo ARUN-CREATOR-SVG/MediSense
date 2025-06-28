@@ -10,7 +10,8 @@ def load_models():
     models = {}
     model_files={
         'heart':'Heart_Disease_model.pkl',
-        'liver':'LiverDiseaseModel.pkl'
+        'liver':'LiverDiseaseModel.pkl',
+        'diabetes':'diabetes_model.pkl'
     }
     try:
        for key,filename in model_files.items():
