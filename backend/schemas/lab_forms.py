@@ -1,4 +1,5 @@
 from pydantic import BaseModel,Field
+from typing import Annotated
 
 class HeartDiseaseForm(BaseModel):
     age: float = Field(..., alias="age", gt=0, example=52)
@@ -29,3 +30,25 @@ class LiverDiseaseForm(BaseModel):
     Albumin: float = Field(..., gt=0, example=3.3)
     Albumin_and_Globulin_Ratio: float = Field(..., gt=0, example=0.9)
 
+class DiabetesDisease(BaseModel):
+    HighBP: Annotated[int, Field(ge=0, le=1, example=1)]
+    HighChol: Annotated[int, Field(ge=0, le=1, example=1)]
+    CholCheck: Annotated[int, Field(ge=0, le=1, example=1)]
+    BMI: Annotated[float, Field(ge=0, le=100, example=28.7)]
+    Smoker: Annotated[int, Field(ge=0, le=1, example=0)]
+    Stroke: Annotated[int, Field(ge=0, le=1, example=0)]
+    HeartDiseaseorAttack: Annotated[int, Field(ge=0, le=1, example=1)]
+    PhysActivity: Annotated[int, Field(ge=0, le=1, example=1)]
+    Fruits: Annotated[int, Field(ge=0, le=1, example=1)]
+    Veggies: Annotated[int, Field(ge=0, le=1, example=1)]
+    HvyAlcoholConsump: Annotated[int, Field(ge=0, le=1, example=0)]
+    AnyHealthcare: Annotated[int, Field(ge=0, le=1, example=1)]
+    NoDocbcCost: Annotated[int, Field(ge=0, le=1, example=0)]
+    GenHlth: Annotated[int, Field(ge=1, le=5, example=3, description="1=Excellent, 5=Poor")]
+    MentHlth: Annotated[int, Field(ge=0, le=30, example=5)]
+    PhysHlth: Annotated[int, Field(ge=0, le=30, example=7)]
+    DiffWalk: Annotated[int, Field(ge=0, le=1, example=1)]
+    Sex: Annotated[int, Field(ge=0, le=1, example=1, description="Male=1, Female=0")]
+    Age: Annotated[int, Field(ge=0, le=100, example=55)]
+    Education: Annotated[int, Field(ge=1, le=6, example=5, description="1=Never, 6=College Graduate")]
+    Income: Annotated[int, Field(ge=1, le=8, example=4, description="1=Lowest, 8=Highest")]
