@@ -1,4 +1,4 @@
-from pydantic import BaseModel,Field
+from pydantic import BaseModel
 
 class HeartDiseaseResponse(BaseModel):
     risk_level:float
@@ -6,4 +6,7 @@ class HeartDiseaseResponse(BaseModel):
     probability:float
 
 class LiverDiseaseResponse(HeartDiseaseResponse):
+    pass
+
+class DiabetesDiseaseResponse(HeartDiseaseResponse):
     pass
