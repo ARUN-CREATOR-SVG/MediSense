@@ -30,7 +30,7 @@ def predict_heart(data: HeartDiseaseForm):
 
     try:      
         prediction = predict_heart_disease(input_data)
-        return JSONResponse(status_code=status.HTTP_200_OK, content={'predicted_category': prediction})
+        return prediction
 
     except Exception as e:
         return  JSONResponse(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,content=str(e))
@@ -51,7 +51,7 @@ def predict_liver(data:LiverDiseaseForm):
         }
     try:
         prediction = predict_liver_disease(input_data)
-        return JSONResponse(status_code=status.HTTP_200_OK, content={'predicted_category': prediction})
+        return prediction
 
     except Exception as e:
         return  JSONResponse(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,content=str(e))
@@ -84,7 +84,7 @@ def predict_diabetes(data:DiabetesDisease):
     }
     try:
         prediction = predict_diabetes_disease(input_data)
-        return JSONResponse(status_code=status.HTTP_200_OK, content={'predicted_category': prediction})
+        return prediction
 
     except Exception as e:
         return  JSONResponse(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,content=str(e))
