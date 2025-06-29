@@ -1,7 +1,36 @@
 import pandas as pd
+from PIL import Image
+import numpy as np
+import tensorflow as tf
+from fastapi import UploadFile
+from io import BytesIO
 from utils.model_loader import load_models
 
 models=load_models()
+
+labels = {0: "NORMAL", 1: "PNEUMONIA"}
+
+async def predict_pneumonia_disease(file: UploadFile):
+    if 'pneumonia' not in models:
+        raise ValueError("Pneumonia model not loaded")
+
+    contents = await file.read()
+    image = Image.open(BytesIO(contents)).convert("RGB")
+    image = image.resize((224, 224)) 
+    image_array = np.array(image) / 255.0
+    image_array = np.expand_dims(image_array, axis=0)  
+
+    model = models['pneumonia']
+    prob = float(model.predict(image_array)[0][0])
+    pred_class = 1 if prob > 0.5 else 0
+    label = labels[pred_class]
+
+    return {
+        "prediction": label,
+        "confidence": round(prob, 3)
+    }
+
+
 
 def _predict_from_model(model, data: dict):
     input_df = pd.DataFrame([data])
