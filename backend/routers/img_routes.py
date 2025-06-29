@@ -12,6 +12,6 @@ router = APIRouter(
 async def predict_pneumonia(file: UploadFile = File(...)):
     try:
         result = await predict_pneumonia_disease(file)
-        return JSONResponse(status_code=status.HTTP_200_OK, content=result)
+        return result
     except Exception as e:
         return JSONResponse(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, content={"error": str(e)})
