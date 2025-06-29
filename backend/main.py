@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from routers import lab_routes
+from routers import lab_routes,img_routes
 
 app=FastAPI()
 
@@ -9,3 +9,5 @@ def home():
 
 
 app.include_router(router=lab_routes.router)
+
+app.include_router(router=img_routes.router)
