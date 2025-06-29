@@ -18,18 +18,19 @@ async def predict_pneumonia_disease(file: UploadFile):
     image = Image.open(BytesIO(contents)).convert("RGB")
     image = image.resize((224, 224)) 
     image_array = np.array(image) / 255.0
-    image_array = np.expand_dims(image_array, axis=0)  
+    image_array = np.expand_dims(image_array, axis=0)
 
     model = models['pneumonia']
     prob = float(model.predict(image_array)[0][0])
     pred_class = 1 if prob > 0.5 else 0
     label = labels[pred_class]
 
+    confidence = round((prob if prob > 0.5 else 1 - prob) * 100, 2)
+
     return {
         "prediction": label,
-        "confidence": round(prob, 3)
+        "confidence": confidence
     }
-
 
 
 def _predict_from_model(model, data: dict):
