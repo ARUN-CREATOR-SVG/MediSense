@@ -18,7 +18,7 @@ def predict_heart(data: HeartDiseaseForm):
         'sex': data.sex,
         'Chest pain type': data.chest_pain_type,
         'BP': data.bp,
-        'Cholesterol': data.cholesterol,
+        'Cholesterol': data.cholesterol,  
         'EKG results': data.ekg_results,
         'MAX HR': data.max_hr,
         'Exercise angina': data.exercise_angina,
@@ -27,6 +27,7 @@ def predict_heart(data: HeartDiseaseForm):
         'Number of vessels fluro': data.number_of_vessels_fluro,
         'Thallium': data.thallium
     }
+
 
     try:      
         prediction = predict_heart_disease(input_data)
