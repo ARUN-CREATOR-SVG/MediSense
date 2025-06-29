@@ -1,9 +1,9 @@
 from fastapi import  APIRouter,status
 from fastapi.responses import JSONResponse
-from schemas.lab_response import HeartDiseaseResponse,LiverDiseaseResponse
-from schemas.lab_forms import HeartDiseaseForm,LiverDiseaseForm
-from utils.model_loader import load_models
-from utils.prediction_functions import predict_heart_disease,predict_liver_disease
+from schemas.lab_response import HeartDiseaseResponse,LiverDiseaseResponse,DiabetesDiseaseResponse
+from schemas.lab_forms import HeartDiseaseForm,LiverDiseaseForm,DiabetesDisease
+from utils.age_mapping import age_to_AGEG5YR
+from utils.prediction_functions import predict_heart_disease,predict_liver_disease,predict_diabetes_disease
 
 router=APIRouter(
     prefix='/lab',
@@ -51,6 +51,39 @@ def predict_liver(data:LiverDiseaseForm):
         }
     try:
         prediction = predict_liver_disease(input_data)
+        return JSONResponse(status_code=status.HTTP_200_OK, content={'predicted_category': prediction})
+
+    except Exception as e:
+        return  JSONResponse(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,content=str(e))
+    
+
+@router.post('/predict_diabetes',response_model=DiabetesDiseaseResponse)
+def predict_diabetes(data:DiabetesDisease):
+    input_data={
+        'HighBP':data.HighBP,
+        'HighChol':data.HighChol,
+        'CholCheck':data.CholCheck,
+        'BMI': data.BMI,
+        'Smoker':data.Smoker,
+        'Stroke':data.Stroke,
+        'HeartDiseaseorAttack':data.HeartDiseaseorAttack,
+        'PhysActivity':data.PhysActivity,
+        'Fruits':data.Fruits,
+        'Veggies':data.Veggies,
+        'HvyAlcoholConsump':data.HvyAlcoholConsump,
+        'AnyHealthcare':data.AnyHealthcare,
+        'NoDocbcCost':data.NoDocbcCost,
+        'GenHlth': data.GenHlth,
+        'MentHlth': data.MentHlth,
+        'PhysHlth': data.PhysHlth,
+        'DiffWalk':data.DiffWalk,
+        'Sex':data.Sex,
+        'Age': age_to_AGEG5YR(data.Age),
+        'Education': data.Education,
+        'Income':data.Income
+    }
+    try:
+        prediction = predict_diabetes_disease(input_data)
         return JSONResponse(status_code=status.HTTP_200_OK, content={'predicted_category': prediction})
 
     except Exception as e:
