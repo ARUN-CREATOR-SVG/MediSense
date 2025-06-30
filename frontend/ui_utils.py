@@ -4,6 +4,7 @@ def load_css():
     st.markdown("""
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap');
+
     .main-title {
         background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
         -webkit-background-clip: text;
@@ -14,15 +15,34 @@ def load_css():
         margin-bottom: 2rem;
         font-family: 'Inter', sans-serif;
     }
+
     .box {
-        background: white;
+        background: #fff;
         border-radius: 20px;
         padding: 2rem;
         margin: 1rem 0;
         box-shadow: 0 4px 20px rgba(0,0,0,0.1);
     }
+
+    .footer-box {
+        background: #f0f0f0;
+        color: #444;
+        border-radius: 15px;
+        margin-top: 2rem;
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .footer-box h4, .footer-box p {
+        margin: 0.3rem 0;
+        text-align: center;
+    }
     </style>
     """, unsafe_allow_html=True)
+
 
 def display_result(prediction_text: str, probability: float, risk_level: str = ""):
     st.success(f"✅ **Prediction:** {prediction_text}")
@@ -42,7 +62,7 @@ def display_result(prediction_text: str, probability: float, risk_level: str = "
 def render_footer():
     st.markdown("""
     ---
-    <div style="text-align: center; padding: 2rem; color: white; background: rgba(255, 255, 255, 0.1); border-radius: 15px; margin-top: 2rem;">
+    <div class="footer-box">
         <h4>⚕️ MediSense - AI-Powered Medical Diagnosis</h4>
         <p><em>This tool is for educational purposes only. Always consult healthcare professionals for medical decisions.</em></p>
         <p>🔬 Powered by Machine Learning & Deep Learning Models</p>
