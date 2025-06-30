@@ -5,7 +5,9 @@ from backend.utils.pneumonia_arch import build_pneumonia_model
 
 logger = logging.getLogger(__name__)
 
-MODEL_DIR = os.path.join(os.getcwd(), 'models')
+MODEL_DIR = os.path.join(os.path.dirname(__file__), '..', 'models')
+MODEL_DIR = os.path.abspath(MODEL_DIR)
+
 
 def load_models():
     models = {}
