@@ -21,8 +21,8 @@ module = st.sidebar.selectbox("🎯 Pick a Disease to Diagnose", ["Heart Disease
 st.sidebar.markdown("---")
 st.sidebar.markdown("💡 **Tip:** Switch between different AI models to diagnose various conditions!")
 
-API_BASE_lab = "http://localhost:8000/lab"
-API_BASE_img = "http://localhost:8000/image"
+API_BASE_lab = "https://medisense-ai.onrender.com/lab"
+API_BASE_img = "https://medisense-ai.onrender.com/image"
 
 # Heart Disease Module
 if module == "Heart Disease":
