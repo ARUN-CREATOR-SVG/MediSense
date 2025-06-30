@@ -2,7 +2,7 @@ import streamlit as st
 import requests
 import pandas as pd
 from PIL import Image
-from ui_utils import load_css,display_result
+from ui_utils import load_css,display_result,render_footer
 
 st.set_page_config(
     page_title="MediSense - AI Diagnosis", 
@@ -303,3 +303,6 @@ elif module == "Pneumonia (X-ray)":
         st.info("📤 Please upload a chest X-ray image to begin analysis")
     
     st.markdown('</div>', unsafe_allow_html=True)
+
+#footer
+render_footer()
