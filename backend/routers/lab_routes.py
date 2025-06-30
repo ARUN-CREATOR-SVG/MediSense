@@ -1,9 +1,9 @@
 from fastapi import  APIRouter,status
 from fastapi.responses import JSONResponse
-from schemas.lab_response import HeartDiseaseResponse,LiverDiseaseResponse,DiabetesDiseaseResponse
-from schemas.lab_forms import HeartDiseaseForm,LiverDiseaseForm,DiabetesDisease
-from utils.age_mapping import age_to_AGEG5YR
-from utils.prediction_functions import predict_heart_disease,predict_liver_disease,predict_diabetes_disease
+from backend.schemas.lab_response import HeartDiseaseResponse,LiverDiseaseResponse,DiabetesDiseaseResponse
+from backend.schemas.lab_forms import HeartDiseaseForm,LiverDiseaseForm,DiabetesDisease
+from backend.utils.age_mapping import age_to_AGEG5YR
+from backend.utils.prediction_functions import predict_heart_disease,predict_liver_disease,predict_diabetes_disease
 
 router=APIRouter(
     prefix='/lab',

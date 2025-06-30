@@ -4,7 +4,7 @@ import numpy as np
 import tensorflow as tf
 from fastapi import UploadFile
 from io import BytesIO
-from utils.model_loader import load_models
+from backend.utils.model_loader import load_models
 
 models=load_models()
 
