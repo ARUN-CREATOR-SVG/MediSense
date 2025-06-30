@@ -11,8 +11,12 @@ st.set_page_config(
 )
 
 load_css()
+
 # Main title with custom styling
 st.markdown('<h1 class="main-title">MediSense - Multi-Disease AI Diagnosis System</h1>', unsafe_allow_html=True)
+
+st.sidebar.info("To enable Dark Mode, go to Settings ⚙️ → Theme → Dark")
+
 
 # Sidebar for module selection
 st.sidebar.markdown("### 🧬 Disease Detection Modules")
