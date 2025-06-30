@@ -37,3 +37,14 @@ def display_result(prediction_text: str, probability: float, risk_level: str = "
         st.error(f"🔴 **Risk Level:** {risk}")
     elif risk:
         st.info(f"⚠️ **Risk Level:** {risk}") 
+
+
+def render_footer():
+    st.markdown("""
+    ---
+    <div style="text-align: center; padding: 2rem; color: white; background: rgba(255, 255, 255, 0.1); border-radius: 15px; margin-top: 2rem;">
+        <h4>⚕️ MediSense - AI-Powered Medical Diagnosis</h4>
+        <p><em>This tool is for educational purposes only. Always consult healthcare professionals for medical decisions.</em></p>
+        <p>🔬 Powered by Machine Learning & Deep Learning Models</p>
+    </div>
+    """, unsafe_allow_html=True)
