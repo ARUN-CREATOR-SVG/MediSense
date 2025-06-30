@@ -10,15 +10,18 @@ MediSense is an AI-powered diagnostic tool designed to assist in early detection
 
 ---
 
-## 🧠 Technologies Used
+## 🧠 Technologies & Models Used
 
-| Category       | Technologies                           |
-|----------------|----------------------------------------|
-| **Frontend**   | Streamlit                              |
-| **Backend**    | FastAPI                                |
-| **ML Libraries** | scikit-learn, XGBoost                |
-| **DL Libraries** | TensorFlow, Keras                    |
-| **Others**     | pandas, numpy, PIL, requests           |
+| Category       | Details                                                         |
+|----------------|-----------------------------------------------------------------|
+| **Frontend**   | Streamlit                                                       |
+| **Backend**    | FastAPI                                                         |
+| **ML Models**  | Ensemble Stacking (SVM, Random Forest, XGBoost)                 |
+| **DL Models**  | Transfer Learning (MobileNetV2 via TensorFlow + Keras)          |
+| **Libraries**  | scikit-learn, XGBoost, pandas, numpy, PIL, requests             |
+
+---
+
 
 ---
 
