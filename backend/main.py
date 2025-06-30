@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from backend.routers import lab_routes,img_routes
+from routers import lab_routes,img_routes
 
 app=FastAPI()
 

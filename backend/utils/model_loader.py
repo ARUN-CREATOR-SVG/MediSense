@@ -1,7 +1,7 @@
 import os
 import pickle
 import logging
-from ..utils.pneumonia_arch import build_pneumonia_model
+from utils.pneumonia_arch import build_pneumonia_model
 
 logger = logging.getLogger(__name__)
 

@@ -1,7 +1,7 @@
 from fastapi import APIRouter, UploadFile, File, status
 from fastapi.responses import JSONResponse
-from ..schemas.img_response  import PneumoniaPredictionResponse
-from ..utils.prediction_functions import predict_pneumonia_disease
+from schemas.img_response  import PneumoniaPredictionResponse
+from utils.prediction_functions import predict_pneumonia_disease
 
 router = APIRouter(
     prefix="/image",
