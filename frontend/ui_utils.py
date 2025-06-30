@@ -23,3 +23,17 @@ def load_css():
     }
     </style>
     """, unsafe_allow_html=True)
+
+def display_result(prediction_text: str, probability: float, risk_level: str = ""):
+    st.success(f"✅ **Prediction:** {prediction_text}")
+    st.info(f"🎯 **Confidence Score:** {probability * 100:.2f}%")
+    
+    risk = risk_level.capitalize() if risk_level else ""
+    if risk == "Low":
+        st.success(f"🟢 **Risk Level:** {risk}")
+    elif risk == "Moderate":
+        st.warning(f"🟡 **Risk Level:** {risk}")
+    elif risk == "High":
+        st.error(f"🔴 **Risk Level:** {risk}")
+    elif risk:
+        st.info(f"⚠️ **Risk Level:** {risk}") 
