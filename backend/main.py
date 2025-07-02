@@ -21,6 +21,9 @@ app.add_middleware(
 def home():
     return {"message":"Welcome to Medisense Website"}
 
+@app.get('/health')
+def health_check():
+    return {"status": "ok"}
 
 app.include_router(router=lab_routes.router)
 
