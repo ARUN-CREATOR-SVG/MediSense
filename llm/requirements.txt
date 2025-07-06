@@ -1,0 +1,15 @@
+langchain
+langchain-core
+langchain-community
+
+transformers
+
+langchain-huggingface
+huggingface-hub
+
+
+python-dotenv
+
+fastapi
+uvicorn
+pydantic
