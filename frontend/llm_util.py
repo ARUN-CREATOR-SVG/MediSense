@@ -1,7 +1,7 @@
 import requests
 
 def get_llm_analysis(prediction, risk_score, input_data):
-    url = "http://localhost:8000/llm/lab-report-analyze"
+    url = "https://medisense-ai.onrender.com/llm/lab-report-analyze"
     payload = {
         "prediction": prediction,
         "risk_score": risk_score,
