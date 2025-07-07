@@ -1,6 +1,6 @@
 # ⚕️ MediSense – Multi-Disease AI Diagnosis System
 
-MediSense is an AI-powered diagnostic tool designed to assist in early detection and risk assessment of multiple diseases using Machine Learning (ML) and Deep Learning (DL). The system currently supports **Heart Disease**, **Diabetes**, **Liver Disease**, and **Pneumonia (X-ray)** detection.
+MediSense is an AI-powered diagnostic tool designed to assist in early detection and risk assessment of multiple diseases using Machine Learning (ML), Deep Learning (DL), and Generative AI (LLM). The system currently supports **Heart Disease**, **Diabetes**, **Liver Disease**, and **Pneumonia (X-ray)** detection.
 
 ---
 
@@ -18,10 +18,28 @@ MediSense is an AI-powered diagnostic tool designed to assist in early detection
 | **Backend**    | FastAPI                                                         |
 | **ML Models**  | Ensemble Stacking (SVM, Random Forest, XGBoost)                 |
 | **DL Models**  | Transfer Learning (MobileNetV2 via TensorFlow + Keras)          |
+| **LLM Engine** | LLaMA 3-8B Instruct (via HuggingFace Inference API)             |
 | **Libraries**  | scikit-learn, XGBoost, pandas, numpy, PIL, requests             |
+| **GenAI Stack**| LangChain, langchain-huggingface                                |
 
 ---
 
+## 🧪 LLM-Powered Medical Analysis 🧠💬
+
+> **"AI that doesn’t just predict — it explains."**
+
+MediSense integrates a **Large Language Model (LLaMA 3-8B Instruct)** to provide in-depth, human-like explanations based on lab test results.
+
+**🔍 Features of LLM Medical Assistant:**
+- Provides **personalized explanations** for predicted disease risks
+- Lists **possible causes** and **prevention tips**
+- Highlights **abnormal lab values**
+- Written in **natural language** for easy understanding
+
+**Powered By:**
+- `LangChain` for prompt chaining and flow
+- `langchain-huggingface` for connecting to HuggingFace-hosted models
+- `llm/lab_report_analysis.py` for modular handling of LLM responses
 
 ---
 
@@ -58,7 +76,7 @@ MediSense is an AI-powered diagnostic tool designed to assist in early detection
 
 ## 🧑‍💻 How to Run Locally
 
-```
+```bash
 # Step 1: Clone the repository
 git clone https://github.com/ARUN-CREATOR-SVG/MediSense.git
 cd MediSense
@@ -73,12 +91,15 @@ venv\Scripts\activate
 source venv/bin/activate
 
 # Step 4: Install dependencies
-pip install -r frontend/requirements.txt
-pip install -r backend/requirements.txt
+pip install -r requirements.txt
 
 # Step 5: Run the Streamlit app
 streamlit run frontend/frontend.py
+
+# Step 6: (Optional) Run the FastAPI backend if testing locally
+uvicorn backend.main:app --reload
 ```
+
 
 ## 📬 Contact
 
